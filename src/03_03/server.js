@@ -1,14 +1,18 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+
 
 const app = express();
-//app.use(cors());
-const port = 4000;
+const port = 3000;
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
+
+// Serve the index.html file
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // GET request endpoint
 app.get('/api/data', (req, res) => {
